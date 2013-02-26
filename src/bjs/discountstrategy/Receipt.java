@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bjs.discountstrategy;
-
 /**
  *
  * @author bspor
@@ -16,7 +11,6 @@ public class Receipt {
     public Receipt(String custID) {
         customer = lookupCustomerByID(custID);
     }
-
     private Customer lookupCustomerByID(String custID) {
         //Shortcut - fix later
         Customer customer = new Customer(custID);
@@ -39,6 +33,7 @@ public class Receipt {
 	// Finally, add the new item to the new element in the temporary array. Then,
 	// set the original = temporary. That's it!
     private void addToArray(LineItem item) {
+        LineItem[] lineItems = new LineItem();
         LineItem[] tempItems = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
         tempItems[lineItems.length] = item;

@@ -1,5 +1,4 @@
 package bjs.discountstrategy;
-
 /**
  *
  * @author bspor
@@ -12,6 +11,10 @@ public class LineItem {
     public LineItem(Product product, int qty) {
         this.product = product;
         this.qty = qty;
+    }
+
+    public LineItem() {
+        
     }
 
     public Product getProduct() {
