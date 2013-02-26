@@ -1,39 +1,35 @@
 package bjs.discountstrategy;
+
 /**
  *
  * @author bspor
  */
 public class Receipt {
 //    private Product product;
+
     private Customer customer;
 //    private int qty;
-    LineItem [] lineItems = new LineItem[0];
+    LineItem[] lineItems = new LineItem[0];
 
     public Receipt(String custID) {
         customer = lookupCustomerByID(custID);
     }
+
     private Customer lookupCustomerByID(String custID) {
 //        Customer customer = new Customer(custID);
 //        customer.setLastName("Jones");
 //        customer.setFirstName("John");
-            FakeDataBase db = new FakeDataBase();
+        FakeDataBase db = new FakeDataBase();
         return db.findCustomer(custID);
     }
-    // Here's how Receipt class adds a purchased product as a LineItem
-    // Note that the Receipt must have a LineItem[]  lineItems array property
+
     //given code
     public void addLineItem(String prodId, int qty) {
         LineItem item = new LineItem(prodId, qty);
         addToArray(item);
     }
 
-	// Since arrays are fixed in size, to add a new element you must resize
-	// the array, but wait, you can't do that in Java! Well, you can fake it. Here's how:
-	// Create a new temporary array that's one larger than the original. Then,
-	// copy all the data from the original into the temporary array.
-	// Finally, add the new item to the new element in the temporary array. Then,
-	// set the original = temporary. That's it!
-    //given code
+    //Used given code.
     private void addToArray(LineItem item) {
         LineItem[] tempItems = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
@@ -41,37 +37,40 @@ public class Receipt {
         lineItems = tempItems;
     }
 
-	// Here's how to loop through all the line items and get a grand total
+    // Here's how to loop through all the line items and get a grand total
     public double getTotalBeforeDiscount() {
         double grandTotal = 0.0;
-        for(LineItem item : lineItems) {
+        for (LineItem item : lineItems) {
             grandTotal += item.getItemPrice();
         }
         return grandTotal;
     }
-    
+
     public void finalizeSaleAndPrintReceipt() {
         double totalDueGross = 0.00;
         double totalDueNet = 0.00;
         double totalDiscount = 0.00;
-        // Old way
-//        String finalOutput = "Thanks for Shopping With Us\n\n";
-//        finalOutput += customer.getCustName() + "\n";
-        // New way
+
+        // New way. String builder
+
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n\n");
         sb.append(customer.getCustName()).append("\n");
+        sb.append(customer.getCustName()).append("\n");
+        sb.append(customer.getCustName()).append("\n");
+        sb.append(customer.getCustName()).append("\n");
+        sb.append(customer.getCustName()).append("\n");
     }
-    
-   public static void main(String[] args) {
+
+    public static void main(String[] args) {
         Product product = new Product();
         FakeDataBase fdb = new FakeDataBase();
-        
+
         product = fdb.findProduct("B205");
         Receipt receipt = new Receipt("100");
-        
+
         LineItem lineItem = new LineItem("B205", 1);
         receipt.addToArray(lineItem);
-                
-        System.out.println(receipt.getTotalBeforeDiscount());        
+
+        System.out.println(receipt.getTotalBeforeDiscount());
     }
 }
