@@ -4,9 +4,17 @@ package bjs.discountstrategy;
  * @author bspor
  */
 public class CashRegister {
-    
+    private String prodId;
+    private String custId;
+    private int qty;
     private Receipt receipt;
-    
+
+    public CashRegister(String prodId, String custId, int qty) {
+        this.prodId = prodId;
+        this.custId = custId;
+        this.qty = qty;
+    }
+       
     public CashRegister() {
     }
 
@@ -15,6 +23,7 @@ public class CashRegister {
     }
 
     public void addItemToSale(String prodID, int qty) {
+        receipt = receipt.addLineItem(prodID, qty)
         
     }   
 
