@@ -4,21 +4,20 @@ package bjs.discountstrategy;
  * @author bspor
  */
 public class Receipt {
-    private Product product;
+//    private Product product;
     private Customer customer;
-    private int qty;
+//    private int qty;
     LineItem [] lineItems = new LineItem[0];
 
     public Receipt(String custID) {
         customer = lookupCustomerByID(custID);
     }
     private Customer lookupCustomerByID(String custID) {
-        //Shortcut - fix later
-        Customer customer = new Customer(custID);
-        customer.setLastName("Jones");
-        customer.setFirstName("John");
-        
-        return customer;
+//        Customer customer = new Customer(custID);
+//        customer.setLastName("Jones");
+//        customer.setFirstName("John");
+            FakeDataBase db = new FakeDataBase();
+        return db.findCustomer(custID);
     }
     // Here's how Receipt class adds a purchased product as a LineItem
     // Note that the Receipt must have a LineItem[]  lineItems array property
@@ -49,6 +48,18 @@ public class Receipt {
             grandTotal += item.getItemPrice();
         }
         return grandTotal;
+    }
+    
+    public void finalizeSaleAndPrintReceipt() {
+        double totalDueGross = 0.00;
+        double totalDueNet = 0.00;
+        double totalDiscount = 0.00;
+        // Old way
+//        String finalOutput = "Thanks for Shopping With Us\n\n";
+//        finalOutput += customer.getCustName() + "\n";
+        // New way
+        StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n\n");
+        sb.append(customer.getCustName()).append("\n");
     }
     
    public static void main(String[] args) {

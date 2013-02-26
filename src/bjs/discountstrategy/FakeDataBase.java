@@ -23,7 +23,7 @@ public class FakeDataBase {
         //validation is needed
         Customer customer = null;
         for (Customer c : customers) {
-            if (custId.equals(c.getCustomerID())) {
+            if (custId.equals(c.getCustID())) {
                 customer = c;
                 break;
             }

@@ -5,7 +5,7 @@ package bjs.discountstrategy;
  */
 public class LineItem extends Product {
     private Product product;
-    String prodId;
+//    String prodId;
     private int qty;
 
     public LineItem(String prodId, int qty) {

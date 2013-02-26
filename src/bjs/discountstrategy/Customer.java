@@ -11,20 +11,26 @@ public class Customer {
         this.custID = custID;
         this.custName = custName;
     }
-    
-    public Customer(String custID) {
-        
+
+    public String getCustID() {
+        return custID;
     }
 
-    public void setLastName(String jones) {
-        
+    public void setCustID(String custID) {
+        this.custID = custID;
     }
 
-    public void setFirstName(String john) {
-        
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
     
-    public String getCustomerID () {
-        return "";
-    }
+  
+
+    
+    
+    
 }
