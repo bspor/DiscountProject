@@ -9,7 +9,13 @@ package bjs.discountstrategy;
  * @author bspor
  */
 public class Customer {
+    private String custID, custName;
 
+    public Customer(String custID, String custName) {
+        this.custID = custID;
+        this.custName = custName;
+    }
+    
     public Customer(String custID) {
         
     }
@@ -22,4 +28,7 @@ public class Customer {
         
     }
     
+    public String getCustomerID () {
+        return "";
+    }
 }

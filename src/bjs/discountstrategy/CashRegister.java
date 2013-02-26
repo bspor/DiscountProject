@@ -26,9 +26,4 @@ public class CashRegister {
     public void finalizeSale() {
         
     }
-
-    public void startNewSale(String custID) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
 }
