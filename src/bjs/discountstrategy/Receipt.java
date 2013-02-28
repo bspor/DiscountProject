@@ -53,16 +53,25 @@ public class Receipt {
 
         // New way. String builder
 
-        StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n\n");
-        sb.append(customer.getCustName()).append("\n");
-        //Loop through each item
-        for (LineItem s)
+        StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n");
+        sb.append(customer.getCustName()).append("\n\n");
         
-       
-        sb.append(customer.getCustName()).append("\n");
-        sb.append(customer.getCustName()).append("\n");
-        sb.append(customer.getCustName()).append("\n");
+        //Loop through each item
+        for (LineItem item : lineItems) {
+            sb.append(item.getQty()).append("  ")
+                    .append(item.getProdID()).append("\t\t")
+                    .append(item.getItemPrice()).append("\n");
+        }
+        
+//       
+//        sb.append(customer.getCustName()).append("\n");
+//        sb.append(customer.getCustName()).append("\n");
+//        sb.append(customer.getCustName()).append("\n");
+        
+        
+        System.out.println(sb);
     }
+    
 
     public static void main(String[] args) {
         Product product = new Product();
@@ -73,7 +82,11 @@ public class Receipt {
 
         LineItem lineItem = new LineItem("B205", 1);
         receipt.addToArray(lineItem);
+        LineItem lineItem2 = new LineItem("B205", 1);
+        receipt.addToArray(lineItem2);
+        LineItem lineItem3 = new LineItem("B205", 1);
+        receipt.addToArray(lineItem3);
 
-        System.out.println(receipt.getTotalBeforeDiscount());
+        receipt.finalizeSaleAndPrintReceipt();
     }
 }
