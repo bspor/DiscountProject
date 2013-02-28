@@ -1,6 +1,11 @@
 
 package bjs.discountstrategy;
-
+/**
+ * This is my startup class to demonstrate my project.
+ * 
+ * @author bspor
+ * @author 
+ */
 public class StartUp {
     public static void main(String[] args) {
         String custID = "100";

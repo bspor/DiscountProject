@@ -58,17 +58,12 @@ public class Receipt {
         
         //Loop through each item
         for (LineItem item : lineItems) {
-            sb.append(item.getQty()).append("  ")
-                    .append(item.getProdID()).append("\t\t")
+            sb.append(item.getQty()).append("   ")
+                    .append(item.getItemName()).append("\t$")
                     .append(item.getItemPrice()).append("\n");
         }
         
-//       
-//        sb.append(customer.getCustName()).append("\n");
-//        sb.append(customer.getCustName()).append("\n");
-//        sb.append(customer.getCustName()).append("\n");
-        
-        
+        //System.out.println(String.format("%20s", sb));
         System.out.println(sb);
     }
     
@@ -80,7 +75,7 @@ public class Receipt {
         product = fdb.findProduct("B205");
         Receipt receipt = new Receipt("100");
 
-        LineItem lineItem = new LineItem("B205", 1);
+        LineItem lineItem = new LineItem("A101", 1);
         receipt.addToArray(lineItem);
         LineItem lineItem2 = new LineItem("B205", 1);
         receipt.addToArray(lineItem2);
