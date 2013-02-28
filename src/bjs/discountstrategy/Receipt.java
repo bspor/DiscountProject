@@ -55,7 +55,10 @@ public class Receipt {
 
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n\n");
         sb.append(customer.getCustName()).append("\n");
-        sb.append(customer.getCustName()).append("\n");
+        //Loop through each item
+        for (LineItem s)
+        
+       
         sb.append(customer.getCustName()).append("\n");
         sb.append(customer.getCustName()).append("\n");
         sb.append(customer.getCustName()).append("\n");

@@ -30,7 +30,4 @@ public class CashRegister {
     public void finalizeSale() {
         toString();
     }
-
-   
-    
 }
