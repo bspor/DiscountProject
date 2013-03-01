@@ -51,4 +51,11 @@ public class Product {
     public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
+
+    /**
+     *
+     * @param unitCost
+     * @param qty
+     * @return returns the discount amount for the product, if there is one.
+     */
 }

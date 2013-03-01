@@ -8,9 +8,7 @@ package bjs.discountstrategy;
  * @version 1.00
  */
 public class LineItem extends Product {
-
     private Product product;
-//    String prodId;
     private int qty;
 
     public LineItem(String prodId, int qty) {
@@ -55,17 +53,22 @@ public class LineItem extends Product {
         return product.getProdName();
     }
     
+    
     public void setQty(int qty) {
         this.qty = qty;
     }
 
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
         Product product = new Product();
         FakeDataBase fdb = new FakeDataBase();
 
         product = fdb.findProduct("B205");
         LineItem lineItem = new LineItem("B205", 2);
-
-        System.out.println(lineItem.product.getProdName());
+        System.out.println(lineItem
+                .getProduct()
+                .getDiscount()
+                .getDiscountAmt(lineItem.getItemPrice(), 5));;
+        //System.out.println(lineItem.getDiscountAmt(lineItem.getItemPrice(), 1));
     }
 }

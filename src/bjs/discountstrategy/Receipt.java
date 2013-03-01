@@ -37,8 +37,8 @@ public class Receipt {
         lineItems = tempItems;
     }
 
-    // Here's how to loop through all the line items and get a grand total
-    public double getTotalBeforeDiscount() {
+    // Loop through all items to get a total. There is no applied discount.
+    private double getTotalBeforeDiscount() {
         double grandTotal = 0.0;
         for (LineItem item : lineItems) {
             grandTotal += item.getItemPrice();
@@ -46,42 +46,36 @@ public class Receipt {
         return grandTotal;
     }
 
+    private double getDiscountTotal() {
+        double discountTotal = 0.0;
+        for (LineItem item : lineItems) {
+            discountTotal += item.getItemPrice();
+        }
+        return discountTotal;
+    }
     public void finalizeSaleAndPrintReceipt() {
         double totalDueGross = 0.00;
         double totalDueNet = 0.00;
         double totalDiscount = 0.00;
 
-        // New way. String builder
-
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n");
         sb.append(customer.getCustName()).append("\n\n");
-        
+        sb.append("#   Description").append("\t\tPrice").append("\n");
+        sb.append("===================================").append("\n");
         //Loop through each item
         for (LineItem item : lineItems) {
+            //Create my string
             sb.append(item.getQty()).append("   ")
                     .append(item.getItemName()).append("\t$")
                     .append(item.getItemPrice()).append("\n");
+            
+            //Add the price to get a total
         }
-        
-        //System.out.println(String.format("%20s", sb));
+        sb.append("===================================").append("\n");
+        sb.append("    Sub Total:").append("\t\t").append("$")
+                .append(getTotalBeforeDiscount()).append("\n");
+        sb.append("     Discount:").append("\t\t").append("$")
+                .append(getTotalBeforeDiscount()).append("\n");
         System.out.println(sb);
-    }
-    
-
-    public static void main(String[] args) {
-        Product product = new Product();
-        FakeDataBase fdb = new FakeDataBase();
-
-        product = fdb.findProduct("B205");
-        Receipt receipt = new Receipt("100");
-
-        LineItem lineItem = new LineItem("A101", 1);
-        receipt.addToArray(lineItem);
-        LineItem lineItem2 = new LineItem("B205", 1);
-        receipt.addToArray(lineItem2);
-        LineItem lineItem3 = new LineItem("B205", 1);
-        receipt.addToArray(lineItem3);
-
-        receipt.finalizeSaleAndPrintReceipt();
     }
 }
