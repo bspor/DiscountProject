@@ -1,6 +1,6 @@
 package bjs.discountstrategy;
 /**
- * This is applied to products that implement quanity discounts 
+ * This is applied to products that implement quantity discounts 
  *
  * @author bspor
  * @version 1.00

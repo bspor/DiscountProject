@@ -1,7 +1,13 @@
 package bjs.discountstrategy;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
+ * The Receipt creates a customer and adds lineitmes to the receipt
+ * finally it prints it out
  *
  * @author bspor
+ * @version 1.00
  */
 public class Receipt {
     private Customer customer;
@@ -48,6 +54,16 @@ public class Receipt {
         return x;
     }
     
+    //Made a quick date function
+    private String todaysDateAndTime () {
+        Date myDate = new Date();
+        //
+        //yyyy-MM-dd:HH-mm-ss
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a   dd-MMM-yyyy");
+        String myCurrtentDateAndTime = sdf.format(myDate);
+        return myCurrtentDateAndTime;
+    }
+    
     //Loop through all items and get their discounts only
     private double getDiscountTotal() {
         double discountTotal = 0.0;
@@ -87,6 +103,8 @@ public class Receipt {
         sb.append("    **** $").append(getDiscountTotal()).append(" SAVINGS!")
                 .append("****").append("\n");
         sb.append("  Total number of items sold  = ").append(countItems)
+                .append("\n");
+        sb.append(" Purchased @ ").append(todaysDateAndTime ())
                 .append("\n");
         System.out.println(sb);
     }

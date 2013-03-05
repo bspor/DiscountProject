@@ -1,5 +1,4 @@
 package bjs.discountstrategy;
-
 /**
  * This class creates a product in order to query it from a fake data base. It
  * also needs to be passed the quantity.
@@ -52,23 +51,8 @@ public class LineItem extends Product {
     public String getItemName () {
         return product.getProdName();
     }
-    
-    
+ 
     public void setQty(int qty) {
         this.qty = qty;
-    }
-
-    @SuppressWarnings("empty-statement")
-    public static void main(String[] args) {
-        Product product = new Product();
-        FakeDataBase fdb = new FakeDataBase();
-
-        product = fdb.findProduct("B205");
-        LineItem lineItem = new LineItem("B205", 2);
-        System.out.println(lineItem
-                .getProduct()
-                .getDiscount()
-                .getDiscountAmt(lineItem.getItemPrice(), 5));;
-        //System.out.println(lineItem.getDiscountAmt(lineItem.getItemPrice(), 1));
     }
 }
