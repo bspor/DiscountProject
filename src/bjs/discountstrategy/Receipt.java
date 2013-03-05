@@ -73,6 +73,25 @@ public class Receipt {
         return myCurrtentDateAndTime;
     }
     
+    //Made a quick discount description method
+     private String discountDescription (LineItem item) {
+         double discAmt;
+         double discPercent;
+         DiscountStrategy discountType;
+         String description;
+         
+         discAmt = item.getProduct().getDiscount()
+                    .getDiscountAmt(item.getItemPrice(), item.getQty());
+         discPercent = discAmt/item.getItemPrice();
+        discountType = item.getProduct().getDiscount();
+        
+       if (discountType instanceof VariableRateDiscount){
+           description = item.getItemName() + " @ " ;
+       }
+       System.out.println(discPercent);
+        return  ""; 
+    }
+    
     //Loop through all items and get their discounts only
     private double getDiscountTotal() {
         double discountTotal = 0.0;
@@ -100,6 +119,7 @@ public class Receipt {
                     .append(item.getItemPrice()).append("\n");
             countItems+=item.getQty();
             //Add the price to get a total
+            discountDescription(item);
         }
         sb.append("===================================").append("\n");
         sb.append("    Sub Total:").append("\t\t").append("$")
