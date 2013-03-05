@@ -3,7 +3,7 @@ package bjs.discountstrategy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
- * The Receipt creates a customer and adds lineitmes to the receipt
+ * The Receipt creates a customer and adds lineitems to the receipt
  * finally it prints it out
  *
  * @author bspor
@@ -14,6 +14,10 @@ public class Receipt {
     
     LineItem[] lineItems = new LineItem[0];
 
+    /**
+     *
+     * @param custID  Reciept will then create the customer from the FakeDataBase
+     */
     public Receipt(String custID) {
         customer = lookupCustomerByID(custID);
     }
@@ -25,12 +29,17 @@ public class Receipt {
 
     //Pass in productId and quantity to create a new lineitem and add to my array
     //of items
+    /**
+     *
+     * @param prodId the product Id is necessary to fill the line item
+     * @param qty Quantity is needed for both pricing and quantity discounts
+     */
     public void addLineItem(String prodId, int qty) {
         LineItem item = new LineItem(prodId, qty);
         addToArray(item);
     }
 
-    //Used given code.
+    //Used given code to add an item to an array
     private void addToArray(LineItem item) {
         LineItem[] tempItems = new LineItem[lineItems.length + 1];
         System.arraycopy(lineItems, 0, tempItems, 0, lineItems.length);
@@ -74,6 +83,9 @@ public class Receipt {
         //discountTotal = (double)Math.round(discountTotal * 100) / 100;
         return roundDoubles(discountTotal);
     }
+    /**
+     * This method simply prints out the receipt. 
+     */
     public void finalizeSaleAndPrintReceipt() {
         int countItems=0;
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n");

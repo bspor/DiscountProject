@@ -12,6 +12,11 @@ public class QtyDiscount implements DiscountStrategy {
     private double discountRate = .15;
     private int minQty = 5;
 
+    /**
+     * Determines if a product qualifies for a quantity discount
+     * @param rate discount percent as decimal.
+     * @param qty how many of an item needed to qualify for discount
+     */
     public QtyDiscount(double rate, int qty) {
         discountRate = rate;
         this.minQty = minQty;
@@ -19,8 +24,8 @@ public class QtyDiscount implements DiscountStrategy {
 
     /**
      *
-     * @param unitCost
-     * @param qty
+     * @param unitCost How much does the unit cost before discounts.
+     * @param qty how many of an item needed to qualify for discount
      * @return returns the discount amount for the product, if there is one.
      */
     @Override
@@ -32,10 +37,18 @@ public class QtyDiscount implements DiscountStrategy {
         }
     }
 
+    /**
+     *
+     * @return get discount rate.
+     */
     public double getDiscountRate() {
         return discountRate;
     }
 
+    /**
+     *
+     * @param discountRate set discount rate
+     */
     public void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
     }

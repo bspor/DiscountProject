@@ -7,6 +7,7 @@ package bjs.discountstrategy;
  * @params need to manually enter custID, and prodIds
  */
 public class StartUp {
+
     public static void main(String[] args) {
         String custID = "100";
         String prodId1 = "A101";

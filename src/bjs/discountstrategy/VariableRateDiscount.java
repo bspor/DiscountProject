@@ -9,19 +9,38 @@ package bjs.discountstrategy;
 public class VariableRateDiscount implements DiscountStrategy {
     private double discountRate = .15;
 
+    /**
+     *
+     * @param rate this is needed to determine what the discount rate will be.
+     * Used as decimal.
+     */
     public VariableRateDiscount(double rate) {
         discountRate = rate;
     }
 
+    /**
+     * This method will get the amount discounted as a dollar amount.
+     * @param unitCost how much the unit costs before any applied discounts.
+     * @param qty how many units.
+     * @return
+     */
     @Override
     public double getDiscountAmt(double unitCost, int qty) {
         return unitCost * qty * discountRate;
     }
 
+    /**
+     *
+     * @return  gets the discount rate.
+     */
     public double getDiscountRate() {
         return discountRate;
     }
 
+    /**
+     *
+     * @param discountRate  sets the discount rate.
+     */ 
     public void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
     }

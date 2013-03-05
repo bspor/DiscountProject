@@ -10,12 +10,20 @@ public class LineItem extends Product {
     private Product product;
     private int qty;
 
+    /**
+     * This is the line item used in the Receipt.
+     * @param prodId used to pass to the product. 
+     * @param qty provides the number of items.
+     */
     public LineItem(String prodId, int qty) {
         FakeDataBase fdb = new FakeDataBase();
         product = fdb.findProduct(prodId);
         this.qty = qty;
     }
 
+    /**
+     * Default constructor.
+     */
     public LineItem() {
     }
 
@@ -27,6 +35,10 @@ public class LineItem extends Product {
         return product;
     }
 
+    /**
+     * Sets the product
+     * @param product needed to set the product
+     */
     public void setProduct(Product product) {
         this.product = product;
     }
@@ -40,6 +52,10 @@ public class LineItem extends Product {
         return qty;
     }
 
+    /**
+     * 
+     * @return returns the unit cost of a product
+     */
     public double getItemPrice() {
         return product.getUnitCost();
     }
@@ -52,6 +68,10 @@ public class LineItem extends Product {
         return product.getProdName();
     }
  
+    /**
+     *
+     * @param qty needed to set how many of a product
+     */
     public void setQty(int qty) {
         this.qty = qty;
     }

@@ -19,6 +19,11 @@ public class FakeDataBase {
 
     // Just call this method to find a customer in the array by its id.
     // Returns null if not found.
+    /**
+     *
+     * @param custId is needed to query data base and fill customer object
+     * @return returns a customer object
+     */
     public final Customer findCustomer(final String custId) {
         //validation is needed
         Customer customer = null;
@@ -34,6 +39,11 @@ public class FakeDataBase {
 
     // Just call this method to find a product in the array by its id.
     //Returns null if not found.
+    /**
+     *
+     * @param prodId  used to query data base and fill product object
+     * @return product object
+     */
     public final Product findProduct(final String prodId) {
         // validation is needed
         Product product = null;
