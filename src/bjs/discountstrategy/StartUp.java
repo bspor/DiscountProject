@@ -4,14 +4,14 @@ package bjs.discountstrategy;
  * This is my startup class to demonstrate my project.
  * 
  * @author bspor
- * @author 
+ * @
  */
 public class StartUp {
     public static void main(String[] args) {
         String custID = "100";
         String prodId1 = "A101";
-        String prodId2 = "B205";
-        String prodID = "C222";
+        String prodId2 = "A101";
+        String prodID = "A101";
         int qty = 2;
         
         CashRegister cr = new CashRegister();
