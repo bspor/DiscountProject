@@ -2,8 +2,12 @@
 package bjs.discountstrategy;
 
 /**
+ * This is my product class. 
  *
  * @author bspor
+ * @version 1.00
+ * @param prodID  This is needed for the product to query the database
+ * @param others  All other parameters are filled in from the FakeDataBase
  */
 public class Product {
     private String prodID, prodName;
@@ -51,11 +55,4 @@ public class Product {
     public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
-
-    /**
-     *
-     * @param unitCost
-     * @param qty
-     * @return returns the discount amount for the product, if there is one.
-     */
 }

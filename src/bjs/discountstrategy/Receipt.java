@@ -38,10 +38,16 @@ public class Receipt {
         for (LineItem item : lineItems) {
             grandTotal += item.getItemPrice();
         }
-        grandTotal = (double)Math.round(grandTotal * 100) / 100;
-        return grandTotal;
+        //grandTotal = (double)Math.round(grandTotal * 100) / 100;
+        return roundDoubles(grandTotal);
     }
-
+    
+    //Made a quick rounding function 
+    private double roundDoubles (double x) {
+        x = (double)Math.round(x * 100) / 100;
+        return x;
+    }
+    
     //Loop through all items and get their discounts only
     private double getDiscountTotal() {
         double discountTotal = 0.0;
@@ -49,8 +55,8 @@ public class Receipt {
             discountTotal += item.getProduct().getDiscount()
                     .getDiscountAmt(item.getItemPrice(), item.getQty());
         }
-        discountTotal = (double)Math.round(discountTotal * 100) / 100;
-        return discountTotal;
+        //discountTotal = (double)Math.round(discountTotal * 100) / 100;
+        return roundDoubles(discountTotal);
     }
     public void finalizeSaleAndPrintReceipt() {
         int countItems=0;
@@ -70,12 +76,12 @@ public class Receipt {
         sb.append("===================================").append("\n");
         sb.append("    Sub Total:").append("\t\t").append("$")
                 .append(getTotalBeforeDiscount()).append("\n");
-        sb.append("    Discount:").append("\t\t").append("$-")
+        sb.append("    Discount:").append("\t\t").append("$")
                 .append(getDiscountTotal()).append("\n");
         
         //Calculate total due
         double totalDue;
-        totalDue = getTotalBeforeDiscount() - getDiscountTotal();
+        totalDue = roundDoubles(getTotalBeforeDiscount() - getDiscountTotal());
         sb.append("    Total Due:").append("\t\t").append("$")
                 .append(totalDue).append("\n");
         sb.append("    **** $").append(getDiscountTotal()).append(" SAVINGS!")
