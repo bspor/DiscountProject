@@ -1,22 +1,24 @@
 package bjs.discountstrategy;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
- * The Receipt creates a customer and adds lineitems to the receipt
- * finally it prints it out
+ * The Receipt creates a customer and adds lineitems to the receipt finally it
+ * prints it out
  *
  * @author bspor
  * @version 1.00
  */
 public class Receipt {
+
     private Customer customer;
-    
     LineItem[] lineItems = new LineItem[0];
 
     /**
      *
-     * @param custID  Reciept will then create the customer from the FakeDataBase
+     * @param custID Reciept will then create the customer from the FakeDataBase
      */
     public Receipt(String custID) {
         customer = lookupCustomerByID(custID);
@@ -56,15 +58,15 @@ public class Receipt {
         //grandTotal = (double)Math.round(grandTotal * 100) / 100;
         return roundDoubles(grandTotal);
     }
-    
+
     //Made a quick rounding function 
-    private double roundDoubles (double x) {
-        x = (double)Math.round(x * 100) / 100;
+    private double roundDoubles(double x) {
+        x = (double) Math.round(x * 100) / 100;
         return x;
     }
-    
+
     //Made a quick date function
-    private String todaysDateAndTime () {
+    private String todaysDateAndTime() {
         Date myDate = new Date();
         //
         //yyyy-MM-dd:HH-mm-ss
@@ -72,26 +74,36 @@ public class Receipt {
         String myCurrtentDateAndTime = sdf.format(myDate);
         return myCurrtentDateAndTime;
     }
-    
+
     //Made a quick discount description method
-     private String discountDescription (LineItem item) {
-         double discAmt;
-         double discPercent;
-         DiscountStrategy discountType;
-         String description;
-         
-         discAmt = item.getProduct().getDiscount()
-                    .getDiscountAmt(item.getItemPrice(), item.getQty());
-         discPercent = discAmt/item.getItemPrice();
+    private String discountDescription(LineItem item) {
+        double discAmt;
+        double discPercent;
+        //NumberFormat NF = NumberFormat.getPercentInstance();
+        NumberFormat NF = NumberFormat.getPercentInstance();
+        NF.setMaximumFractionDigits(1);
+        DiscountStrategy discountType;
+        String description=null;
+        int minQty = item.getProduct().getDiscount().getQty();
+        discPercent = item.getProduct().getDiscount().getDiscountRate();
+        discAmt = item.getProduct().getDiscount()
+                .getDiscountAmt(item.getItemPrice(), item.getQty());
         discountType = item.getProduct().getDiscount();
-        
-       if (discountType instanceof VariableRateDiscount){
-           description = item.getItemName() + " @ " ;
-       }
-       System.out.println(discPercent);
-        return  ""; 
+        if (discPercent > 0) {
+            if (discountType instanceof VariableRateDiscount) {
+                description = "@ " + NF.format(discPercent)
+                        + " off!";
+            } else if (discountType instanceof QtyDiscount) {
+                description = "@ " + NF.format(discPercent)
+                        + " off per " + minQty;
+                //return description; 
+            } else {
+                description = "No Discount";
+            }
+        }
+        return description;
     }
-    
+
     //Loop through all items and get their discounts only
     private double getDiscountTotal() {
         double discountTotal = 0.0;
@@ -99,14 +111,14 @@ public class Receipt {
             discountTotal += item.getProduct().getDiscount()
                     .getDiscountAmt(item.getItemPrice(), item.getQty());
         }
-        //discountTotal = (double)Math.round(discountTotal * 100) / 100;
         return roundDoubles(discountTotal);
     }
+
     /**
-     * This method simply prints out the receipt. 
+     * This method simply prints out the receipt.
      */
     public void finalizeSaleAndPrintReceipt() {
-        int countItems=0;
+        int countItems = 0;
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n");
         sb.append(customer.getCustName()).append("\n\n");
         sb.append("#   Description").append("\t\tPrice").append("\n");
@@ -116,17 +128,19 @@ public class Receipt {
             //Create my string
             sb.append(item.getQty()).append("   ")
                     .append(item.getItemName()).append("\t$")
-                    .append(item.getItemPrice()).append("\n");
-            countItems+=item.getQty();
-            //Add the price to get a total
-            discountDescription(item);
+                    .append(roundDoubles(item.getItemPrice())).append("\n");
+            if (discountDescription(item) != null) {
+                    sb.append(discountDescription(item)).append("\n");
+            }
+            countItems += item.getQty();
+            //Add the price to get a total            
         }
         sb.append("===================================").append("\n");
         sb.append("    Sub Total:").append("\t\t").append("$")
                 .append(getTotalBeforeDiscount()).append("\n");
         sb.append("    Discount:").append("\t\t").append("$")
                 .append(getDiscountTotal()).append("\n");
-        
+
         //Calculate total due
         double totalDue;
         totalDue = roundDoubles(getTotalBeforeDiscount() - getDiscountTotal());
@@ -136,7 +150,7 @@ public class Receipt {
                 .append("****").append("\n");
         sb.append("  Total number of items sold  = ").append(countItems)
                 .append("\n");
-        sb.append(" Purchased @ ").append(todaysDateAndTime ())
+        sb.append(" Purchased @ ").append(todaysDateAndTime())
                 .append("\n");
         System.out.println(sb);
     }

@@ -41,6 +41,7 @@ public class QtyDiscount implements DiscountStrategy {
      *
      * @return get discount rate.
      */
+    @Override
     public double getDiscountRate() {
         return discountRate;
     }
@@ -51,5 +52,14 @@ public class QtyDiscount implements DiscountStrategy {
      */
     public void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
+    }
+
+    /**
+     *
+     * @return the quantity, in this case the minimum quantity
+     */
+    @Override
+    public int getQty() {
+        return minQty;
     }
 }

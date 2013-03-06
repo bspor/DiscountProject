@@ -8,7 +8,8 @@ package bjs.discountstrategy;
  */
 public class VariableRateDiscount implements DiscountStrategy {
     private double discountRate = .15;
-
+    //All discounts will need a quantity even if it doesnt matter
+    private int qty;
     /**
      *
      * @param rate this is needed to determine what the discount rate will be.
@@ -33,6 +34,7 @@ public class VariableRateDiscount implements DiscountStrategy {
      *
      * @return  gets the discount rate.
      */
+    @Override
     public double getDiscountRate() {
         return discountRate;
     }
@@ -43,5 +45,10 @@ public class VariableRateDiscount implements DiscountStrategy {
      */ 
     public void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
+    }
+
+    @Override
+    public int getQty() {
+        return qty;
     }
 }
