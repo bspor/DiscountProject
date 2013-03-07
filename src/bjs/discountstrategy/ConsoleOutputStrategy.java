@@ -1,5 +1,4 @@
 package bjs.discountstrategy;
-
 /**
  *
  * @author bspor

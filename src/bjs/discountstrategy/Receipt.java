@@ -116,8 +116,9 @@ public class Receipt {
 
     /**
      * This method simply prints out the receipt.
+     * CHANGED: returns a string!!!!
      */
-    public void finalizeSaleAndPrintReceipt() {
+    public StringBuilder finalizeSaleAndPrintReceipt() {
         int countItems = 0;
         StringBuilder sb = new StringBuilder("Thanks for Shopping With Us\n");
         sb.append(customer.getCustName()).append("\n\n");
@@ -152,6 +153,13 @@ public class Receipt {
                 .append("\n");
         sb.append(" Purchased @ ").append(todaysDateAndTime())
                 .append("\n");
-        System.out.println(sb);
+        //System.out.println(sb);
+        return sb;
     }
+
+    @Override
+    public String toString() {
+        return "Receipt{" + "customer=" + customer + ", lineItems=" + lineItems + '}';
+    }
+    
 }

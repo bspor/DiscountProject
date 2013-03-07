@@ -5,10 +5,11 @@ package bjs.discountstrategy;
  * @author bspor
  */
 public class IOService {
-    private InputStrategy in;
+    //The interface for this is not implemented yet
+    private StringBuilder in;
     private OutputStrategy out;
 
-    public IOService(InputStrategy in, OutputStrategy out) {
+    public IOService(StringBuilder in, OutputStrategy out) {
         this.in = in;
         this.out = out;
     }

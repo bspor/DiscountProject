@@ -1,6 +1,8 @@
 
 package bjs.discountstrategy;
 
+import java.util.Objects;
+
 /**
  * This is my product class. 
  *
@@ -94,5 +96,44 @@ public class Product {
      */
     public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.prodID);
+        hash = 23 * hash + Objects.hashCode(this.prodName);
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.unitCost) ^ (Double.doubleToLongBits(this.unitCost) >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.discount);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (!Objects.equals(this.prodID, other.prodID)) {
+            return false;
+        }
+        if (!Objects.equals(this.prodName, other.prodName)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.unitCost) != Double.doubleToLongBits(other.unitCost)) {
+            return false;
+        }
+        if (!Objects.equals(this.discount, other.discount)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "prodID=" + prodID + ", prodName=" + prodName + ", unitCost=" + unitCost + ", discount=" + discount + '}';
     }
 }

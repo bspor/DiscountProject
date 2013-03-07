@@ -33,6 +33,13 @@ public class CashRegister {
      *  This method simply calls the finalizeSaleAndPrintReceipt method in Receipt
      */
     public void finalizeSale() {
-        receipt.finalizeSaleAndPrintReceipt();
+        OutputStrategy out = new GUIOutputStrategy();
+        OutputStrategy out2 = new ConsoleOutputStrategy();
+        //InputStrategy in = new InputStrategy();
+        
+        IOService service = new IOService(receipt.finalizeSaleAndPrintReceipt(), out);
+        service.outPut();
+        
+        //receipt.finalizeSaleAndPrintReceipt();
     }
 }
